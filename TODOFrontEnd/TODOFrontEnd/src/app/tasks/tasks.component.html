@@ -1,0 +1,102 @@
+<div class="jumbotron" style="padding:45px 0px">
+  <h4 class="text-center">To DO List App</h4>
+</div>
+
+<div class="alert alert-danger" *ngIf="message">{{message}}</div>
+
+<div class="input-group" *ngIf="isEdit">
+  <input type="text" class="form-control" [(ngModel)]='titleupdate'>
+  <div class="input-group-addon hover-cursor" (click)="onEditSubmit()">
+    <button class="btn btn-warning">update</button>
+  </div>
+</div>
+
+
+<div class="input-group" *ngIf="!isEdit">
+  <input type="text" class="form-control" [(ngModel)]='title'>
+  <div class="input-group-addon hover-cursor" (click)="onAdd()">
+    <i class="fa fa-plus-circle fa-2x"></i>
+  </div>
+
+</div>
+
+
+<div style="margin:5px 0px">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of TODO">
+      <span class="hover-cursor" (click)="Doned(item._id,item.title)">
+        <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
+      </span>
+      {{item.title}}
+      <span class="hover-cursor text-danger pull-right">
+        <i class="fa fa-trash-o fa-lg" (click)="Delete(item._id)"></i>
+      </span>
+      <span class="hover-cursor text-danger pull-right">
+        <i class="fa fa-done-o fa-lg">
+          <button class="btn btn-primary" (click)="onEditClick(item)">edit</button>
+
+        </i>
+      </span>
+    </li>
+  </ul>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getTaskDone()">
+  Task Doned
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Doned Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="margin:5px 0px">
+
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of DoneTODO">
+            {{item.title}}
+            <span class="hover-cursor text-danger pull-right">
+              <i class="fa fa-trash-o fa-lg" (click)="Delete(item._id)"></i>
+            </span>
+          </li>
+        </ul>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer" style="margin:45px 0px">
+  <button type="button" class="btn btn-secondary" (click)="logOut()">Logout</button>
+</div>
+
+
+
+<!-- <div style="margin:5px 0px" >
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of DoneTODO">
+      <span class="hover-cursor" [class.text-success]='item.isChecked' (click)="Doned(item._id,item.title)">
+        <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
+      </span>
+      {{item.title}}
+      <span class="hover-cursor text-danger pull-right">
+        <i class="fa fa-trash-o fa-lg" (click)="Delete(item._id)"></i>
+      </span>
+      <span class="hover-cursor text-danger pull-right">
+        <i class="fa fa-done-o fa-lg">
+          <button class="btn btn-primary" (click)="Edit(item._id,item.titl)">edit</button>
+
+        </i>
+      </span>
+    </li>
+  </ul>
+</div> -->

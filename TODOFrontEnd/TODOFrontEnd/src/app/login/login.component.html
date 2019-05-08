@@ -1,0 +1,26 @@
+<div class="row pt-5">
+  <div class="col-md-12 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <h3 class="mb-0">login</h3>
+      </div>
+      <div class="alert alert-danger" *ngIf="message">{{message}}</div>
+      <div class="card-body">
+        <form class="form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" [(ngModel)]="loginUserData.email" name="email" type="email" id="email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" [(ngModel)]="loginUserData.password" name="password" type="password"
+              id="password">
+          </div>
+          <button (click)="loginUser()" type="button" class="btn btn-success mr-3">Login</button>
+          <button [routerLink]="['/register']" routerLinkActive="active" type="button"
+            class="btn btn-primary">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
