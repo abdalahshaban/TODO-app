@@ -42,7 +42,7 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, 'public/TODOFrontEnd')));
 
-app.get('*', (req, res) => {
+server.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public/TODOFrontEnd/index.html'));
 });
 //server.use(express.static(path.join(__dirname, 'public/TODOFrontEnd')));
